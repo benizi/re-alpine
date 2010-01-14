@@ -2148,7 +2148,7 @@ forward_subject(ENVELOPE *env, int flags)
 
     }
 
-    return(cpystr("Forwarded mail...."));
+    return(cpystr("Fwd: (no subject)"));
 }
 
 
