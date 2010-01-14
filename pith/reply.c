@@ -704,7 +704,7 @@ reply_subject(char *subject, char *buf, size_t buflen)
     char   *tmp = fs_get(l + 1), *decoded, *p;
 
     if(!buf){
-	buflen = l + 5;
+	buflen = l + 10;
 	buf = fs_get(buflen);
     }
 
@@ -728,7 +728,7 @@ reply_subject(char *subject, char *buf, size_t buflen)
 
     if(!buf[0])
       snprintf(buf, buflen, "Re: %.*s", buflen-1,
-	      (subject && *subject) ? subject : "your mail");
+	      (subject && *subject) ? subject : "(no subject)");
 
     buf[buflen-1] = '\0';
 
