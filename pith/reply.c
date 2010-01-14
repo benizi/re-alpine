@@ -2129,8 +2129,8 @@ forward_subject(ENVELOPE *env, int flags)
 
 	removing_trailing_white_space(tmp_20k_buf);
 	if((l = strlen(tmp_20k_buf)) < 1000 &&
-	   (l < 5 || strcmp(tmp_20k_buf+l-5,"(fwd)"))){
-	    snprintf(tmp_20k_buf+2000, SIZEOF_20KBUF-2000, "%s (fwd)", tmp_20k_buf);
+	   (l < 5 || strncmp(tmp_20k_buf,"fwd:",4))){
+	    snprintf(tmp_20k_buf+2000, SIZEOF_20KBUF-2000, "Fwd: %s", tmp_20k_buf);
 	    tmp_20k_buf[SIZEOF_20KBUF-2000-1] = '\0';
 	    strncpy(tmp_20k_buf, tmp_20k_buf+2000, SIZEOF_20KBUF);
 	    tmp_20k_buf[SIZEOF_20KBUF-1] = '\0';
