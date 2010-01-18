@@ -3859,7 +3859,7 @@ remote configuration folder.
 <P>
 For Unix Alpine, the personal configuration file is normally the file
 <CODE>.pinerc</CODE> in the user's home directory.
-This can be changed with the -p command line flag.
+This can be changed with the -p command line flag or $PINERC environment variable.
 For PC-Alpine, the personal configuration file is in
 <CODE>$PINERC</CODE> or <CODE>&lt;AlpineRC registry value&gt;</CODE> or 
 <CODE>$HOME&#92;PINE&#92;PINERC</CODE> or
