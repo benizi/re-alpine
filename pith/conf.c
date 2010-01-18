@@ -1439,6 +1439,10 @@ init_pinerc(struct pine *ps, char **debug_out)
 	     (ps->prc && ps->prc->name) ? ps->prc->name : "<no name>"));
     }
 
+    if(!ps->pinerc && (p = getenv("PINERC")) && *p) {
+      ps->pinerc = cpystr(p);
+    }
+
     if(!ps->pinerc){
       build_path(buf, ps->home_dir, ".pinerc", sizeof(buf));
       ps->pinerc = cpystr(buf);
