@@ -1260,7 +1260,7 @@ pine_tcptimeout(long int elapsed, long int sincelast)
 	fflush(stdout);
 	flush_input();
 	ch = read_char(7);
-	if(ch == 'y' || ch == 'Y'){
+	if(ch != 'n' && ch != 'N'){
 	  ps_global->user_says_cancel = 1;
 	  rv = 0L;
 	}
