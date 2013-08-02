@@ -4697,12 +4697,6 @@ ADDRESS *imap_parse_address (MAILSTREAM *stream,unsigned char **txtptr,
 	if (ingroup && !(adr->personal || adr->adl || adr->host)) --ingroup;
 	else {
 	  if (ingroup) {	/* in a group? */
-	    sprintf (LOCAL->tmp,/* yes, must be bad syntax */
-		     "Junk in end of group: pn=%.80s al=%.80s dn=%.80s",
-		     adr->personal ? adr->personal : "",
-		     adr->adl ? adr->adl : "",
-		     adr->host ? adr->host : "");
-	    mm_notify (stream,LOCAL->tmp,WARN);
 	  }
 	  else mm_notify (stream,"End of group encountered when not in group",
 			  WARN);
@@ -4714,10 +4708,6 @@ ADDRESS *imap_parse_address (MAILSTREAM *stream,unsigned char **txtptr,
       }
       else if (!adr->host) {	/* start of group? */
 	if (adr->personal || adr->adl) {
-	  sprintf (LOCAL->tmp,"Junk in start of group: pn=%.80s al=%.80s",
-		   adr->personal ? adr->personal : "",
-		   adr->adl ? adr->adl : "");
-	  mm_notify (stream,LOCAL->tmp,WARN);
 	  stream->unhealthy = T;
 	  mail_free_address (&adr);
 	  adr = prev;
