@@ -760,10 +760,10 @@ main(int argc, char *argv[])
 				}
 
 				switch(Tcl_Eval(interp, &buf[co])){
-				  case TCL_OK	  : peReturn(cs, "OK", interp->result); break;
-				  case TCL_ERROR  : peReturn(cs, "ERROR", interp->result); break;
-				  case TCL_BREAK  : peReturn(cs, "BREAK", interp->result); break;
-				  case TCL_RETURN : peReturn(cs, "RETURN", interp->result); break;
+				  case TCL_OK	  : peReturn(cs, "OK", Tcl_GetStringResult(interp)); break;
+				  case TCL_ERROR  : peReturn(cs, "ERROR", Tcl_GetStringResult(interp)); break;
+				  case TCL_BREAK  : peReturn(cs, "BREAK", Tcl_GetStringResult(interp)); break;
+				  case TCL_RETURN : peReturn(cs, "RETURN", Tcl_GetStringResult(interp)); break;
 				  default	  : peReturn(cs, "BOGUS", "eval returned unexpected value"); break;
 				}
 			    }
