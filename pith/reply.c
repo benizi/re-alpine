@@ -3158,8 +3158,11 @@ generate_message_id(void)
     if(!hostpart)
       hostpart = cpystr("huh");
 
-    snprintf(idbuf, sizeof(idbuf), "<alpine.%.4s.%.20s.%02d%02d%02d%02d%02d%02d%X.%d@%.50s>",
-	    SYSTYPE, ALPINE_VERSION, (now_x->tm_year) % 100, now_x->tm_mon + 1,
+    snprintf(idbuf, sizeof(idbuf), "<%.33s%02d%02d%02d%02d%02d%02d%X.%d@%.50s>",
+	    F_OFF(F_QUELL_USERAGENT, ps_global)
+              ? "alpine." SYSTYPE "." ALPINE_VERSION "."
+              : "",
+	    (now_x->tm_year) % 100, now_x->tm_mon + 1,
 	    now_x->tm_mday, now_x->tm_hour, now_x->tm_min, now_x->tm_sec, 
 	    cnt, getpid(), hostpart);
     idbuf[sizeof(idbuf)-1] = '\0';
