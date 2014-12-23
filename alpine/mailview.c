@@ -1399,6 +1399,8 @@ url_launch(HANDLE_S *handle)
 	PIPE_S  *syspipe;
 
 	toolp = handle->h.url.tool;
+	left_double_quote = NULL;
+	right_double_quote = NULL;
 
 	/*
 	 * Figure out if we need to quote the URL. If there are shell

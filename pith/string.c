@@ -2711,6 +2711,8 @@ copy_quoted_string_asis(char *src)
     char *q, *p;
     int   done = 0, quotes = 0;
 
+    q = NULL;
+
     if(src){
 	p = q = (char *)fs_get(strlen(src) + 1);
 

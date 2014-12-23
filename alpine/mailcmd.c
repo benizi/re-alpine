@@ -400,7 +400,7 @@ view_text:
 			     : (in_index == View)
 			       ? MH_ANYTHD : MH_NONE);
 		if(i == mn_get_cur(msgmap)){
-		    PINETHRD_S *thrd, *topthrd;
+		    PINETHRD_S *thrd, *topthrd = NULL;
 
 		    if(THRD_INDX_ENABLED()){
 			mn_dec_cur(stream, msgmap, MH_ANYTHD);

@@ -3622,7 +3622,7 @@ view_in_new_window(void)
     void             *text;
     long              len;
     int	              format;
-    MSWIN_TEXTWINDOW *mswin_tw;
+    MSWIN_TEXTWINDOW *mswin_tw = NULL;
 
     /* Launch text in alt window. */
     if(index_gettext_callback(title, sizeof (title), &text, &len, &format)){

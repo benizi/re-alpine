@@ -71,10 +71,10 @@ main(argc, argv)
             printf("%5d users processed so far\n", so_far);
         }
 
-        if(strcmp(pw->pw_dir, "/") == 0)
+        if(strncmp(pw->pw_dir, "/", 1) == 0)
           continue;
 
-        sprintf(filename, "%s/.pinerc", pw->pw_dir);
+        snprintf(filename, sizeof(filename), "%s/.pinerc", pw->pw_dir);
         if(stat(filename, &statb) < 0)
           continue;
         if(statb.st_mtime + 7 * DAYSEC > now) 
@@ -98,11 +98,11 @@ main(argc, argv)
             }
         }
 
-        sprintf(filename, "%s/.signature", pw->pw_dir);
+        snprintf(filename, sizeof(filename), "%s/.signature", pw->pw_dir);
         if(access(filename, 0) == 0)
           sig_files++;
 
-        sprintf(filename, "%s/core", pw->pw_dir);
+        snprintf(filename, sizeof(filename), "%s/core", pw->pw_dir);
         if((f = fopen(filename, "r")) != NULL) {
             fflush(stdout);
             while((c = getc(f)) != EOF) {
@@ -121,7 +121,7 @@ main(argc, argv)
                     *p = '\0';
                     if(c == EOF)
                       break;
-                    if(strcmp(&buf[strlen(buf) - 13], "(olivebranch)") == 0) {
+                    if(strncmp(&buf[strlen(buf) - 13], "(olivebranch)", 13) == 0) {
                         printf("%s\t%s\n", filename, buf + 14);
                         core_files++;
                         if(core != NULL) {
@@ -161,7 +161,7 @@ mail_file_size(user)
     FILE *f;
     char buf[20480];
 
-    sprintf(buf, MAILSPOOLPCTS, user);
+    snprintf(buf, sizeof(buf), MAILSPOOLPCTS, user);
 
     f = fopen(buf, "r");
     if(f  == NULL)

@@ -5854,6 +5854,7 @@ write_pinerc(struct pine *ps, EditWhich which, int flags)
 	char datebuf[200];
 
 	datebuf[0] = '\0';
+	we_cancel = 0;
 
 	if(!(flags & WRP_NOUSER))
 	  we_cancel = busy_cue(_("Copying to remote config"), NULL, 1);

@@ -210,6 +210,8 @@ mm_expunged(MAILSTREAM *stream, long unsigned int rawno)
     int           is_current = 0;
     MSGNO_S      *msgmap;
 
+    mc = NULL;
+
 #ifdef DEBUG
     if(ps_global->debug_imap > 1 || ps_global->debugmem)
       dprint((3, "mm_expunged(%s,%lu)\n",
