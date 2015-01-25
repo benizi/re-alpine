@@ -71,7 +71,7 @@ main(argc, argv)
             printf("%5d users processed so far\n", so_far);
         }
 
-        if(strncmp(pw->pw_dir, "/", 1) == 0)
+        if(strcmp(pw->pw_dir, "/") == 0)
           continue;
 
         snprintf(filename, sizeof(filename), "%s/.pinerc", pw->pw_dir);
@@ -147,7 +147,7 @@ main(argc, argv)
     printf("%5d: more than a year\n", user_count[4]);
     printf("%5d: core files\n", core_files);
     printf("%5d: Average messages in inbox  (%ld/%d)\n",
-           inbox_mess/inboxes, inbox_mess, inboxes);
+           inboxes>0?inbox_mess/inboxes:0, inbox_mess, inboxes);
     printf("%5d: Largest inbox in messages\n", inbox_mess_max);
     printf("%5d: Total users checked\n", so_far);
     printf("%5d: signature files\n", sig_files);
