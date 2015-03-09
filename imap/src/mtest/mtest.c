@@ -595,7 +595,7 @@ void status (MAILSTREAM *stream)
 void prompt (char *msg,char *txt)
 {
   printf ("%s",msg);
-  gets (txt);
+  fgets (txt, MAILTMPLEN, stdin);
 }
 
 /* Interfaces to C-client */
@@ -779,7 +779,7 @@ void smtptest (long debug)
   puts (" Msg (end with a line with only a '.'):");
   body->type = TYPETEXT;
   *text = '\0';
-  while (gets (line)) {
+  while (fgets (line, MAILTMPLEN, stdin)) {
     if (line[0] == '.') {
       if (line[1] == '\0') break;
       else strcat (text,".");
